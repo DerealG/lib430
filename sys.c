@@ -2,13 +2,15 @@
 
 void Clock_init()
 {
-    WDTCTL = WDTPW | WDTHOLD;		//关闭看门狗
+  WDTCTL = WDTPW | WDTHOLD;		//关闭看门狗
 
-    BCSCTL1=CALBC1_16MHZ;		//DCO 16MHZ
-    DCOCTL=CALDCO_16MHZ;		//DCO设置为16MHZ
-    BCSCTL2 |= SELM_1 + DIVM_0;		//MCLK —— DCO —— 16MHZ
-    BCSCTL2 &=~SELS;		        //SMCLK —— DCO
-    BCSCTL2 |= DIVS_1;			//二分频 ——8MHZ
+  BCSCTL1=CALBC1_16MHZ;		//DCO 16MHZ
+  DCOCTL=CALDCO_16MHZ;		//DCO设置为16MHZ
+  BCSCTL2 |= SELM_1 + DIVM_0;		//MCLK —— DCO —— 16MHZ
+  BCSCTL2 &=~SELS;		        //SMCLK —— DCO
+  BCSCTL2 |= DIVS_1;			//二分频 ——8MHZ
+  BCSCTL1 &= ~XTS;
+  BCSCTL3 |= LFXT1S_2;          // 使用内部VLOCLK作为ACLK，25℃下约为10kHz
 }
 
 void delay(u16 ms)

@@ -23,7 +23,7 @@ void PWM2_init()
 }
 void Timer_Overflow_init()
 {
-  //设置Timer0，连续计数，SMCLK——8MHz，8分频，TA0为1MHz，溢出时间为1*1M*65535=0.065535s=65.535ms
+  //设置Timer0，连续计数，SMCLK——8MHz，8分频，TA0为1MHz，溢出时间为1/1M*65535=0.065535s=65.535ms
   TA0CTL |= TASSEL_2 + MC_2 + ID_3 + TAIE + TACLR; 
 }
 void Timer_Compare_init()
